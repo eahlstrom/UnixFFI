@@ -1,0 +1,24 @@
+
+module UnixFFI::Struct
+  class Passwd < FFI::ManagedStruct
+    @@@
+    struct do |s|
+      s.name 'struct passwd'
+      s.include 'sys/types.h'
+      s.include 'pwd.h'
+      s.field :pw_name,   :string
+      s.field :pw_passwd, :string
+      s.field :pw_uid,    :int
+      s.field :pw_gid,    :int
+      s.field :pw_gecos,  :string
+      s.field :pw_dir,    :string
+      s.field :pw_shell,  :string
+    end
+    @@@
+
+    def self.release(ptr)
+      Passwd.free_object(ptr)
+    end
+  end
+end
+

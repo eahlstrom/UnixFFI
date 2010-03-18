@@ -1,0 +1,24 @@
+== DESCRIPTION:
+
+UnixFFI is a ruby(mri) test project for laborating and learn ffi[http://github.com/ffi/ffi].
+
+== FEATURES:
+
+* has support for libc calls: getpwent, setpwent, endpwent.
+* has Passwd and Pwent ruby wrapper's to behave more rubyish.
+
+== REQUIREMENTS:
+
+* need to have gem 'ffi' installed.
+
+== SYNOPSIS:
+
+  require 'lib/unix'
+
+  passwd = Unix::Passwd.new
+  passwd.collect(&:name)      -> ["root", "bin", ...]
+
+  grouped_by_gid = passwd.group_by{|pwe| pwe.gid}
+  grouped_by_gid.each{|gid,pwnts| puts "group #{gid} has #{pwnts.count} members"}   -> "group 0 has 1 members"...
+
+
